@@ -61,15 +61,15 @@ module.exports = {
     https: false, // 编译失败时刷新页面
     // hot: true, // 开启热加载
     // hotOnly: false,
-    // proxy: {
-    //   '/devApi': {
-    //       target: "", 
-    //       changeOrigin: true,
-    //       pathRewrite: {
-    //           '^/devApi': ''
-    //       }
-    //   }
-    // },
+    proxy: {
+      '/api': {
+          target: "http://175.24.63.102:8181/", 
+          changeOrigin: true,
+          pathRewrite: {
+              '^/api': ''
+          }
+      }
+    },
     overlay: { // 全屏模式下是否显示脚本错误
       warnings: true,
       errors: true

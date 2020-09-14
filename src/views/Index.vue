@@ -4,26 +4,11 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">Brand</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <router-link to="login" tag="a">登录</router-link>
-            </li>
             <li class="active">
               <router-link
                 to="register"
@@ -47,13 +32,8 @@
             </div>
           <div class="content-box" style="background-color:rgba(255,255,255,0);" id="box-lefr">
             <p style="font-size : 2em; ">Welcome back</p>
-            <p>...</p>
             <p>
-              <a
-                class="btn btn-more btn-lg"
-                href="https://laolan-runtu.xyz"
-                role="button"
-              >更多工作室咨询</a>
+              <button class="button submit" @click="more()">更多工作室咨询</button>
             </p>
           </div>
         </div>
@@ -77,19 +57,22 @@ export default {
     login
   },
   setup(props, { refs, root }) {
-    const go = src => {
-      window.location.href = src;
+    const more = () => {
+      window.location.href="https://laolan-runtu.xyz";
     };
     return {
-      go
+      more
     };
   },
-  mounted(){
-     
-  }
 };
 </script>>
 <style lang="scss" scoped>
+$lavender: #CBC0D3;
+$pale: #EAC7CC;
+$white: #f6f6f6;
+$pink: darken($pale, 20%);
+$sans-serif: 'Open Sans', sans-serif;
+$serif: 'Lora', serif;
 .img {
   position: absolute;
   top: 0;
@@ -134,7 +117,35 @@ export default {
     align-items: center;
     justify-content: space-around;
 }
-.btn-more{
-  
+button {
+  padding: 12px;
+  font-family: $sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  border-radius: 10px;
+  margin: auto;
+  outline: none;
+  display: block;
+  &:hover {
+    background: $pale;
+    color: $white;
+    transition: background-color 1s ease-out;
+  }
+}
+.button {
+  margin-top: 3%;
+  background: $white;
+  color: $pink;
+  border: solid 1px $pale;
+}
+.submit {
+  margin-top: 25px;
+  padding: 12px;
+  border-color: $pink;
+  &:hover {
+    background: $lavender;
+    border-color: darken($lavender, 5%);
+  }
 }
 </style>>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const BASEURL='http://175.24.63.102:8181/';
+const BASEURL='/api';
 const service = axios.create({
     baseURL: BASEURL
 });

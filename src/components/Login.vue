@@ -10,12 +10,12 @@
       class="demo-ruleForm"
       size="medium"
     >
-      <el-form-item label="学号" prop="email" class="form-input inputtt">
+      <el-form-item label="学号" prop="sno" class="form-input inputtt">
         <el-input type="text" v-model="ruleForm.sno" autocomplete="off"></el-input>
       </el-form-item>
 
-      <el-form-item label="密码"  prop="password" class="form-input inputtt">
-        <el-input  type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+      <el-form-item label="密码" prop="password" class="form-input inputtt">
+        <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
       </el-form-item>
 
       <el-form-item class="form-input" style="margin-top : 20%">
@@ -33,7 +33,7 @@ export default {
   name: "login",
   setup(props, { refs, root }) {
     const validateSno = (rule, value, callback) => {
-      if (!value) {
+      if (value === "") {
         return callback(new Error("学号不能为空"));
       } else {
         callback(); //true
@@ -58,7 +58,6 @@ export default {
     //函数
     const submitForm = formName => {
       refs[formName].validate(valid => {
-        console.log(valid);
         if (valid) {
           let requestData = new FormData();
           requestData.append("sno", ruleForm.sno);
@@ -67,9 +66,14 @@ export default {
             .then(responce => {
               console.log(responce);
               if (responce.data.code === "200") {
-                Message.success("登录成功");
+                root.$message({
+                  showClose: true,
+                  message: "登录成功",
+                  type: "success"
+                });
                 root.$router.push({
-                  name: "/commit"
+                  name: "/commit",
+                  params:requestData
                 });
               } else {
                 Message.error("学号或密码出错");
