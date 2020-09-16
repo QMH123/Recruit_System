@@ -119,8 +119,6 @@ export default {
     const getSms = () => {
       let formData = new FormData();
       formData.append("mail", ruleForm.email);
-      codeButtonStatus.status = true;
-      countDown(60);
       if (isEmail(ruleForm.email)) {
         GetSms(formData)
           .then(response => {
@@ -158,7 +156,7 @@ export default {
               type: "success"
             })
               root.$router.push({
-                  name: "/index"
+                  name: "Index"
                 });
               console.log(response);
             })

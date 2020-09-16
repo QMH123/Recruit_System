@@ -56,6 +56,13 @@ export default {
       sno: [{ validator: validateSno, trigger: "blur" }]
     };
     //函数
+    const convert_FormData_to_json = formData => {
+      let objData = {};
+
+      formData.forEach((value, key) => (objData[key] = value));
+
+      return JSON.stringify(objData);
+    };
     const submitForm = formName => {
       refs[formName].validate(valid => {
         if (valid) {
@@ -71,9 +78,10 @@ export default {
                   message: "登录成功",
                   type: "success"
                 });
+                let data = convert_FormData_to_json(requestData);
+                root.$store.commit("setuserInfo", data);
                 root.$router.push({
-                  name: "/commit",
-                  params:requestData
+                  name: "Commit"
                 });
               } else {
                 Message.error("学号或密码出错");
